@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embeddable Modal Demo</title>
+  <style>
+    /* Demo page styles */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+    h1 { color: #333; }
+    .demo-section {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-top: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Embeddable Iframe Modal</h1>
+  <p>Click the product card below to open the modal:</p>
+
+  <!-- === EMBED CODE START === -->
+  <!-- Copy everything between EMBED CODE START and EMBED CODE END -->
+
+  <div class="dripshop-trigger" onclick="openDripshopModal()" style="
+    display: inline-block;
+    cursor: pointer;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    max-width: 300px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  " onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 25px rgba(0,0,0,0.2)'"
+     onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(0,0,0,0.15)'">
+    <img src="https://cdn.dripshop.live/product/NULUONECgGFN-y63vB9qv.png" alt="McFarlane DC Collector Edition Pack" style="
+      width: 100%;
+      height: auto;
+      display: block;
+    ">
+    <div style="padding: 16px; text-align: center;">
+      <span style="
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+      ">McFarlane DC Collector Edition Pack</span>
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div id="dripshop-modal" style="
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 999999;
+    justify-content: center;
+    align-items: center;
+  " onclick="closeDripshopModal(event)">
+    <!-- Modal Content -->
+    <div style="
+      position: relative;
+      width: 95%;
+      max-width: 1380px;
+      height: 85%;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    " onclick="event.stopPropagation()">
+      <!-- Close Button -->
+      <button onclick="closeDripshopModal()" style="
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      " onmouseover="this.style.background='rgba(0,0,0,0.9)'"
+         onmouseout="this.style.background='rgba(0,0,0,0.7)'">&times;</button>
+      <!-- Iframe -->
+      <iframe id="dripshop-iframe" style="
+        width: 100%;
+        height: 100%;
+        border: none;
+      " allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    function openDripshopModal() {
+      var modal = document.getElementById('dripshop-modal');
+      var iframe = document.getElementById('dripshop-iframe');
+      iframe.src = 'https://www.dripshop.live/box-break/cffa4a6f-dd67-40f8-8233-0bcc417069c0';
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDripshopModal(event) {
+      if (event && event.target !== document.getElementById('dripshop-modal')) return;
+      var modal = document.getElementById('dripshop-modal');
+      var iframe = document.getElementById('dripshop-iframe');
+      modal.style.display = 'none';
+      iframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeDripshopModal();
+    });
+  </script>
+
+  <!-- === EMBED CODE END === -->
+
+  <div class="demo-section">
+    <h2>How to Embed</h2>
+    <p>Copy and paste the code below into any HTML page:</p>
+    <pre><code>&lt;!-- DripShop Modal Embed --&gt;
+&lt;div class="dripshop-trigger" onclick="openDripshopModal()" style="
+  display: inline-block;
+  cursor: pointer;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 300px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 25px rgba(0,0,0,0.2)'"
+   onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(0,0,0,0.15)'"&gt;
+  &lt;img src="https://cdn.dripshop.live/product/NULUONECgGFN-y63vB9qv.png"
+       alt="McFarlane DC Collector Edition Pack" style="width: 100%; height: auto; display: block;"&gt;
+  &lt;div style="padding: 16px; text-align: center;"&gt;
+    &lt;span style="font-size: 16px; font-weight: 600; color: #333;"&gt;McFarlane DC Collector Edition Pack&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="dripshop-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999999; justify-content: center; align-items: center;" onclick="closeDripshopModal(event)"&gt;
+  &lt;div style="position: relative; width: 95%; max-width: 1380px; height: 85%; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3);" onclick="event.stopPropagation()"&gt;
+    &lt;button onclick="closeDripshopModal()" style="position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border: none; background: rgba(0,0,0,0.7); color: white; font-size: 24px; cursor: pointer; border-radius: 50%; z-index: 10; display: flex; align-items: center; justify-content: center;"&gt;&amp;times;&lt;/button&gt;
+    &lt;iframe id="dripshop-iframe" style="width: 100%; height: 100%; border: none;" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function openDripshopModal() {
+  var modal = document.getElementById('dripshop-modal');
+  var iframe = document.getElementById('dripshop-iframe');
+  iframe.src = 'https://www.dripshop.live/box-break/cffa4a6f-dd67-40f8-8233-0bcc417069c0';
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeDripshopModal(event) {
+  if (event && event.target !== document.getElementById('dripshop-modal')) return;
+  var modal = document.getElementById('dripshop-modal');
+  var iframe = document.getElementById('dripshop-iframe');
+  modal.style.display = 'none';
+  iframe.src = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeDripshopModal();
+});
+&lt;/script&gt;</code></pre>
+  </div>
+
+</body>
+</html>
